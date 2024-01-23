@@ -62,5 +62,33 @@ def foodmaxx():
     data = (response.json())
     for i in data:
         print(i['name']," ",i['price_text']," ",i['description']," ",i['post_price_text'])
-            
+
+
+def smartfinal():
+    url = 'https://dam.flippenterprise.net/flyerkit/publication/6234203/products?display_type=all&source=hosted2&locale=en&access_token=0a290a2b3668a85e2d28efd6efd77383'
+
+    headers = {
+        'authority': 'dam.flippenterprise.net',
+        'accept': '*/*',
+        'accept-language': 'en-US,en;q=0.9',
+        'if-none-match': 'W/"7d4a1a3643c6fce6f84f6fceee2e6013"',
+        'origin': 'https://www.smartandfinal.com',
+        'referer': 'https://www.smartandfinal.com/',
+        'sec-ch-ua': '"Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120"',
+        'sec-ch-ua-mobile': '?0',
+        'sec-ch-ua-platform': '"Linux"',
+        'sec-fetch-dest': 'empty',
+        'sec-fetch-mode': 'cors',
+        'sec-fetch-site': 'cross-site',
+        'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+    }
+
+    response = requests.get(url, headers=headers)
+
+    # Now you can convert the response to JSON, if it is JSON
+    data = response.json()
+    for i in data:
+        print(i['name']," ",i['price_text']," ",i['description']," ",i['post_price_text'])
+
 foodmaxx()
+smartfinal()
