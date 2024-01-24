@@ -108,13 +108,10 @@ def raleys():
     # print(soup.prettify())
     product_grid=soup.find('div', {'class': 'desktop:grid-cols-5'})
     srchProducts = soup.find_all('div', {'class' : 'flex flex-col gap-4 pb-16'}) + soup.find_all('div', {'class' : 'flex flex-col items-start gap-4 pb-16'})
-    # print(srchProducts)
     products=[]
-    product={}
     print(len(srchProducts))
     for n in range(len(srchProducts)):
         product={}
-       
         if srchProducts[n].find('p', {'class' : 'desktop:h7'}) is not None:
             # print(srchProducts[n])
             product['name'] = srchProducts[n].find('p', {'class' : 'desktop:h7'}).text
@@ -123,21 +120,6 @@ def raleys():
             if srchProducts[n].find('div', {'class': 'desktop:p6 p6 text-neutral-600'}) is not None:
                 product['unitPrice'] = srchProducts[n].find('div', {'class': 'desktop:p6 p6 text-neutral-600'}).text
             products.append(product)
-
-
-    # print(len(prices))
-    # sleep(10)
-    # products=[]
-    # product={}
-    # for i in range(len(srchProducts)):
-    #     product={}
-    #     n=i
-    #     product['name']=srchProducts[i].text
-    #     product['price']=prices[n].text
-    #     product['unitPrice']=pricePerUnit[n].text.split(' ')[0].replace("(","")
-    #     product['units']=pricePerUnit[n].text.strip()
-    #     # print(product)
-    #     products.append(product)
 
     print(products)
     print(len(products))
