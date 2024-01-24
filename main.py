@@ -84,11 +84,64 @@ def smartfinal():
     }
 
     response = requests.get(url, headers=headers)
-
-    # Now you can convert the response to JSON, if it is JSON
     data = response.json()
     for i in data:
-        print(i['name']," ",i['price_text']," ",i['description']," ",i['post_price_text'])
+        if i['price_text']!="":
+            print(i['name']," ",i['price_text']," ",i['description'])
+            print()
+def raleys():
+    driver.get("https://www.raleys.com/weekly-ad")
+    sleep(15)
+    # input_element = driver.find_element("xpath",'/html/body/div[4]/div/div[1]/header/nav/div/div[1]/div[2]/div[3]/div/div/div/div[2]/div[1]/p')
+    # input_element.click()
+    # sleep(10)
+    # iframe = driver.find_element('xpath',"//iframe[contains(@id,'sp_message_iframe')]")
+    # driver.switch_to().frame(iframe)
 
-foodmaxx()
-smartfinal()
+    # input_element = driver.find_element("xpath",'//*[@id=":r6:"]/div/div/div[2]/button[3]')
+    # input_element.click()
+    # sleep(2)
+    # input_element = driver.find_element("xpath",'/html/body/div[4]/div/div[1]/header/div[2]/div/div/div[2]/div[1]/div/div/input')
+    # input_element.send_keys("Merced")
+    html = driver.page_source 
+    soup = BeautifulSoup(html, "html.parser") 
+    # print(soup.prettify())
+    product_grid=soup.find('div', {'class': 'desktop:grid-cols-5'})
+    srchProducts = soup.find_all('div', {'class' : 'flex flex-col gap-4 pb-16'}) + soup.find_all('div', {'class' : 'flex flex-col items-start gap-4 pb-16'})
+    # print(srchProducts)
+    products=[]
+    product={}
+    print(len(srchProducts))
+    for n in range(len(srchProducts)):
+        product={}
+       
+        if srchProducts[n].find('p', {'class' : 'desktop:h7'}) is not None:
+            # print(srchProducts[n])
+            product['name'] = srchProducts[n].find('p', {'class' : 'desktop:h7'}).text
+            product['price'] = srchProducts[n].find('h6', {'class': 'desktop:h6'}).text
+            # print(srchProducts[n].find('div', {'class': 'p6'}).text)
+            if srchProducts[n].find('div', {'class': 'desktop:p6 p6 text-neutral-600'}) is not None:
+                product['unitPrice'] = srchProducts[n].find('div', {'class': 'desktop:p6 p6 text-neutral-600'}).text
+            products.append(product)
+
+
+    # print(len(prices))
+    # sleep(10)
+    # products=[]
+    # product={}
+    # for i in range(len(srchProducts)):
+    #     product={}
+    #     n=i
+    #     product['name']=srchProducts[i].text
+    #     product['price']=prices[n].text
+    #     product['unitPrice']=pricePerUnit[n].text.split(' ')[0].replace("(","")
+    #     product['units']=pricePerUnit[n].text.strip()
+    #     # print(product)
+    #     products.append(product)
+
+    print(products)
+    print(len(products))
+
+raleys()
+# foodmaxx()
+# smartfinal()
