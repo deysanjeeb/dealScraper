@@ -57,14 +57,16 @@ def foodmaxx():
     'sec-fetch-site': 'cross-site',
     'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
 }
-
+    # find a way to get access token
     response = requests.get('https://dam.flippenterprise.net/flyerkit/publication/6227599/products?display_type=all&source=hosted2&locale=en&access_token=6253e7db4156b0fcf78ceaf133d4aab6', headers=headers)
     data = (response.json())
-    for i in data:
-        print(i['name']," ",i['price_text']," ",i['description']," ",i['post_price_text'])
+    print(data)
+    # for i in data:
+    #     print(i['name']," ",i['price_text']," ",i['description']," ",i['post_price_text'])
 
 
 def smartfinal():
+    #find a way to get access token
     url = 'https://dam.flippenterprise.net/flyerkit/publication/6234203/products?display_type=all&source=hosted2&locale=en&access_token=0a290a2b3668a85e2d28efd6efd77383'
 
     headers = {
@@ -125,5 +127,5 @@ def raleys():
     print(len(products))
 
 raleys()
-# foodmaxx()
-# smartfinal()
+foodmaxx()
+smartfinal()
