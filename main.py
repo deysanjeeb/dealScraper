@@ -5,15 +5,11 @@ from selenium.webdriver.common.keys import Keys
 from time import sleep
 from bs4 import BeautifulSoup 
 import csv
-# import config
 # from telegram import Bot
 import requests
 import re
 from lxml import etree
 
-
-
-service = Service(executable_path=r'/usr/bin/chromedriver')
 options = webdriver.ChromeOptions()
 service = Service(executable_path=r'/usr/bin/chromedriver')
 # options.add_argument('--headless')
@@ -91,6 +87,7 @@ def smartfinal():
         if i['price_text']!="":
             print(i['name']," ",i['price_text']," ",i['description'])
             print()
+
 def raleys():
     driver.get("https://www.raleys.com/weekly-ad")
     sleep(15)
@@ -124,7 +121,7 @@ def raleys():
             products.append(product)
 
     print(products)
-    print(len(products))
+#    print(len(products))
 
 raleys()
 foodmaxx()
